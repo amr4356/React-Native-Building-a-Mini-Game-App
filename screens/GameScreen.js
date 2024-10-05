@@ -23,10 +23,8 @@ function GameScreen({ userNumber }) {
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
   function nextGuessHandler(direction) {
-    if (direction === "lower" && currentGuess < userNumber) {
-    }
     if (
-      (direction === "hig" && currentGuess < userNumber) ||
+      (direction === "lower" && currentGuess < userNumber) ||
       (direction === "greater" && currentGuess > userNumber)
     ) {
       Alert.alert("Don't lie!", "You know that this is wrong...", [
