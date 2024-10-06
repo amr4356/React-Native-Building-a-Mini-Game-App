@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     marginHorizontal: 24,
-    marginTop: deviceWidth < 380 ? 18 : 36,
+    marginTop: deviceWidth < 380 ? 28 : 36,
     backgroundColor: Colors.primary800,
     borderRadius: 8,
     elevation: 4,
