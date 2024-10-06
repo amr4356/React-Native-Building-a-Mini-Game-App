@@ -4,8 +4,8 @@ import GameOverScreen from "./screens/GameOverScreen";
 import StartGameScreen from "./screens/StartGameScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
-import { useState } from "react";
+import * as SplashScreen from 'expo-splash-screen';
+import { useState,useEffect } from "react";
 import Colors from "./constants/colors";
 
 export default function App() {
@@ -20,8 +20,18 @@ export default function App() {
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
+  useEffect(() => {
+    async function hideSplashScreen() {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync(); // Hide splash screen once fonts are loaded
+      }
+    }
+
+    hideSplashScreen();
+  }, [fontsLoaded]);
+
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null; // Return null or any custom loading screen while fonts are loading
   }
 
   function pickedNumberHandler(pickedNumber) {
@@ -50,7 +60,7 @@ export default function App() {
   if (gameIsOver && userNumber) {
     screen = (
       <GameOverScreen
-        useNumber={userNumber}
+        userNumber={userNumber}
         roundsNumber={guessRounds}
         onStartNewGame={startNewGameHandler}
       />
